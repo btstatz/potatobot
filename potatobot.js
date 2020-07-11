@@ -50,6 +50,7 @@ client.on('message', async message => {
 
 	try {
 		command.execute(message, args);
+		message.member.setNickname(message.member.nickname + 1)
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command');
