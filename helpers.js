@@ -43,7 +43,7 @@ const vote = async (message, text, duration, thingToDo) => {
 	});
 
 	collector.on('end', async collected => {
-		if (numThumbsUp >= threshold) {
+		if (numThumbsUp >= numThumbsDown) {
 			message.channel.send(`Vote succeeded`);
 			thingToDo();
 			//return true;
