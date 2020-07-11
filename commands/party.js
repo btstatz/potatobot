@@ -4,7 +4,7 @@ const helpers = require('../helpers.js');
 
 module.exports = {
 	name: 'party',
-	//aliases: [''],
+	aliases: [],
 	description: 'Random rotation',
 	cooldown: 30,
 	checkInput(message, args) {
