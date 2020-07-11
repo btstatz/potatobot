@@ -14,7 +14,7 @@ module.exports = {
 	description: 'help',
 	cooldown: 10,
 	async execute(message, args) {
-		let helpMsg = "Blonerhelp from Blonerbot:" + commands.reduce((acc, command) => acc + `\n${command.name}: ${command.description} (aliases: ${command.aliases})`)
+		let helpMsg = commands.reduce((acc, command) => acc + `\n${command.name}: ${command.description} (aliases: ${command.aliases})`, "Blonerhelp from Blonerbot:")
 		message.channel.send(helpMsg);
 	},
 }; 
