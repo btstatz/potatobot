@@ -28,7 +28,6 @@ module.exports = {
 		});
 	},
 	add(member) {
-		member.blonerpoints = 0
 		this.membersInCall.set(member.id, member);
 		if (this.holder) {
 			member.voice.setMute(true);
