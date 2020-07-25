@@ -21,14 +21,18 @@ module.exports = {
 
 		await helpers.vote(message, text, this.cooldown, async () => {
 			Potato.party = !Potato.party;
-
+			
+			let membersArray = [];
 			while (Potato.party) {
-				let membersInCall = message.member.voice.channel.members;
-				let membersArray = [];
-				membersInCall.each(member => {
-					membersArray.push(member);
-				});
-				let randomMember = membersArray[Math.floor(Math.random() * membersArray.length)];
+				if (membersArray.length === 0) {
+					let membersInCall = message.member.voice.channel.members;
+					membersInCall.each(member => {
+						membersArray.push(member);
+					});
+				}
+				let randomIndex = Math.floor(Math.random() * membersArray.length)
+				let randomMember = membersArray[randomIndex];
+				membersArray.splice(randomIndex, 1)
 
 				Potato.reset();
 				message.channel.send(`30 seconds until ${randomMember}\'s turn`, {tts: true});
