@@ -9,7 +9,8 @@ const vote = async (message, text, duration, thingToDo) => {
 	await reactionMessage.react('👍');
 	await reactionMessage.react('👎');
 
-	const threshold = message.member.voice.channel.members.size / 2;
+	const numMembers = message.member.voice.channel.members.size
+	const threshold = numMembers / 2;
 
 	const filter = (reaction, user) => {
 		return (reaction.emoji.name === '👍' || reaction.emoji.name === '👎') && user.id != reactionMessage.author.id;
@@ -43,7 +44,7 @@ const vote = async (message, text, duration, thingToDo) => {
 	});
 
 	collector.on('end', async collected => {
-		if (numThumbsUp >= threshold) {
+		if (numThumbsUp >= numThumbsDown && numThumbsUp >= 2 || numMembers < 2 && numThumbsUp == 1) {
 			message.channel.send(`Vote succeeded`);
 			thingToDo();
 			//return true;
